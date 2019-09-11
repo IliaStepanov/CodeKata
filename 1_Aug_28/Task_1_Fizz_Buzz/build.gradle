@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+}
+
+group '1_Aug_28'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+test {
+    testLogging {
+        events = ["passed", "failed", "skipped"]
+        showStandardStreams = true
+    }
+}
