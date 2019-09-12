@@ -3,6 +3,8 @@ import java.util.List;
 
 public class Mutable {
 
+  //TODO Make me immutable
+
   public List<String> strings;
   public List<Date> dates;
   public List<Integer> integers;

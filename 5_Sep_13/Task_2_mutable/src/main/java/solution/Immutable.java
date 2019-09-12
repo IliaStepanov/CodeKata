@@ -1,38 +1,43 @@
 package solution;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class Immutable {
+public final class Immutable {
 
-  public List<String> strings;
-  public List<Date> dates;
-  public List<Integer> integers;
+  private final List<String> strings;
+  private final List<Date> dates;
+  private final int[] integers;
 
+  public Immutable(List<String> strings, List<Date> dates, int[] integers) {
 
+    this.strings = new ArrayList<>(strings);
+
+    this.dates = new ArrayList<>(dates);
+
+    this.integers = Arrays.copyOf(integers, integers.length);
+  }
 
   public List<String> getStrings() {
-    return strings;
+    return new ArrayList<>(strings);
   }
 
-  public void setStrings(List<String> strings) {
-    this.strings = strings;
+
+  public List<LocalDate> getDates() {
+    return dates.stream()
+        .map(Date::toInstant)
+        .map(instant -> instant.atZone(ZoneId.systemDefault()).toLocalDate())
+        .collect(
+            Collectors.toList());
   }
 
-  public List<Date> getDates() {
-    return dates;
-  }
 
-  public void setDates(List<Date> dates) {
-    this.dates = dates;
+  public int[] getIntegers() {
+    return Arrays.copyOf(integers, integers.length);
   }
-
-  public List<Integer> getIntegers() {
-    return integers;
-  }
-
-  public void setIntegers(List<Integer> integers) {
-    this.integers = integers;
-  }
-
 }
