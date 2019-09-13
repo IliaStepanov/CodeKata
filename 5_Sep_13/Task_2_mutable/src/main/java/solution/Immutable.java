@@ -4,11 +4,17 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public final class Immutable {
+
+//  public static void main(String[] args) {
+//    Immutable immutable = new Immutable(new ArrayList<String>(), new ArrayList<Date>(), new int[2]);
+//    immutable.getStrings().add("some");
+//  }
 
   private final List<String> strings;
   private final List<Date> dates;
@@ -16,7 +22,7 @@ public final class Immutable {
 
   public Immutable(List<String> strings, List<Date> dates, int[] integers) {
 
-    this.strings = new ArrayList<>(strings);
+    this.strings = Collections.unmodifiableList(strings);
 
     this.dates = new ArrayList<>(dates);
 
@@ -24,7 +30,7 @@ public final class Immutable {
   }
 
   public List<String> getStrings() {
-    return new ArrayList<>(strings);
+    return strings;
   }
 
 
